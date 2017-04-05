@@ -1,0 +1,29 @@
+#!/bin/bash
+
+
+file=$1
+username=$2
+
+
+if [ $# -ne 2 ]; then                                                # $# expands to the number of positional parameters that have been set.
+    echo "Incorrect number of arguments"
+    exit 1
+fi
+
+if [ -f "$file" ]; then
+
+	echo "File Found"
+else
+	echo "File not found"
+	exit 1
+fi
+
+if grep -i -w "$username" $file
+then 
+        echo "Username already Exist"
+else 
+	echo "Username not found"
+        echo "$username">>$file
+        echo "Username added at the end of the file"
+fi 
+
